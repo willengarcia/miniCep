@@ -20,13 +20,17 @@ public class Cep {
     public Cep() {}
 
     public Cep(DadosCep dadosCep) {
-        this.logradouro = dadosCep.logradouro();
-        this.complemento = dadosCep.complemento();
-        this.bairro = dadosCep.bairro();
-        this.cidade = dadosCep.cidade();
-        this.uf = dadosCep.uf();
-        this.ibge = dadosCep.ibge();
-        this.cep = dadosCep.cep();
+        try{
+            this.logradouro = dadosCep.logradouro();
+            this.complemento = dadosCep.complemento();
+            this.bairro = dadosCep.bairro();
+            this.cidade = dadosCep.cidade();
+            this.uf = dadosCep.uf();
+            this.ibge = dadosCep.ibge();
+            this.cep = dadosCep.cep();
+        } catch(Exception e){
+            System.out.println("Erro ao criar coletar os dados do CEP: "+ e.getMessage());
+        }
     }
 
     public Cliente getCliente() {

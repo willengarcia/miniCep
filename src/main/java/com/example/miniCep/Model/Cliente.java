@@ -3,6 +3,7 @@ package com.example.miniCep.Model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Entity(name = "cliente")
 public class Cliente {
@@ -18,14 +19,21 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Cep> endereco;
 
+
+
+
     public Cliente() {}
 
     public Cliente(String cpf, String nome, String email, String telefone, List<Cep> endereco) {
-        this.cpf = cpf;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
+        try{
+            this.cpf = cpf;
+            this.nome = nome;
+            this.email = email;
+            this.telefone = telefone;
+            this.endereco = endereco;
+        } catch (Exception e){
+            System.out.println("Erro ao criar coletar os dados: "+ e.getMessage());
+        }
     }
 
     public String getNome() {
